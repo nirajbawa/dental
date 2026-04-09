@@ -1,0 +1,227 @@
+.payment-portal-page {
+    min-height: calc(100vh - 68px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f7fa 0%, #e8f4f8 100%);
+    padding: 40px 16px;
+}
+
+.payment-portal-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 460px;
+    overflow: hidden;
+}
+
+/* Header */
+.pp-header {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 28px 24px 24px;
+}
+
+.pp-logo {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 auto 12px;
+}
+
+.pp-header h2 {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.pp-header p {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Summary */
+.pp-summary {
+    padding: 24px 28px 0;
+}
+
+.pp-summary-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-light);
+    margin-bottom: 14px;
+}
+
+.pp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+}
+
+.pp-row span {
+    color: var(--text-mid);
+}
+
+.pp-row strong {
+    color: var(--text-dark);
+}
+
+.pp-total {
+    border-bottom: none;
+    padding-top: 12px;
+    margin-top: 4px;
+    border-top: 2px solid var(--border);
+}
+
+.pp-total span {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.pp-total strong {
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-family: 'Playfair Display', serif;
+}
+
+/* Payment methods */
+.pp-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 16px 28px;
+}
+
+.pp-methods span {
+    background: var(--light-grey);
+    color: var(--text-mid);
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+}
+
+/* Pay button */
+.pp-pay-btn {
+    width: calc(100% - 56px);
+    margin: 0 28px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+}
+
+.pp-skip {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 0.82rem;
+    padding: 12px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.pp-skip:hover {
+    color: var(--text-mid);
+}
+
+/* Status states */
+.pp-status {
+    text-align: center;
+    padding: 32px 28px;
+}
+
+.pp-status p {
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    margin-top: 12px;
+}
+
+.pp-sub {
+    font-size: 0.78rem !important;
+    color: var(--text-light) !important;
+    margin-top: 4px !important;
+}
+
+/* Success */
+.pp-success .pp-check {
+    width: 64px;
+    height: 64px;
+    background: var(--success-bg);
+    color: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 auto 16px;
+}
+
+.pp-success h3 {
+    color: var(--success);
+    margin-bottom: 8px;
+}
+
+.pp-ref {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-family: monospace;
+    background: var(--light-grey);
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 8px 0 16px;
+}
+
+/* Failed */
+.pp-failed .pp-cross {
+    width: 64px;
+    height: 64px;
+    background: var(--danger-bg);
+    color: var(--danger);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 auto 16px;
+}
+
+.pp-failed h3 {
+    color: var(--danger);
+    margin-bottom: 8px;
+}
+
+/* Secure badge */
+.pp-secure {
+    text-align: center;
+    padding: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 0.72rem;
+    color: var(--text-light);
+}
+
+/* Alert inside portal */
+.payment-portal-card .alert {
+    margin: 0 28px 12px;
+}

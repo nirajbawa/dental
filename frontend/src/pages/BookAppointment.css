@@ -1,0 +1,259 @@
+.book-page {
+    padding: 48px 0 80px;
+    background: var(--off-white);
+    min-height: calc(100vh - 68px);
+}
+
+.book-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.book-header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.book-header p {
+    color: var(--text-mid);
+}
+
+.book-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 28px;
+    align-items: start;
+}
+
+.fee-banner {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    text-align: center;
+    padding: 14px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Slots */
+.slot-date {
+    color: var(--text-light);
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+.slot-hint {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding: 12px 0;
+}
+
+.slots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.slot-btn {
+    padding: 10px 8px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.slot-btn:hover:not(.booked) {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(26, 107, 138, 0.05);
+}
+
+.slot-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.slot-btn.booked {
+    background: var(--light-grey);
+    color: var(--text-light);
+    cursor: not-allowed;
+    border-color: var(--border);
+}
+
+.slot-label {
+    font-size: 0.68rem;
+    color: var(--danger);
+    font-weight: 400;
+}
+
+.slot-btn.booked .slot-label {
+    color: var(--text-light);
+}
+
+/* Payment options */
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.payment-option:hover {
+    border-color: var(--primary);
+}
+
+.payment-option.selected {
+    border-color: var(--primary);
+    background: rgba(26, 107, 138, 0.05);
+}
+
+.payment-option input {
+    margin-top: 2px;
+    accent-color: var(--primary);
+}
+
+.payment-option strong {
+    display: block;
+    font-size: 0.88rem;
+    margin-bottom: 2px;
+}
+
+.payment-option span {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+}
+
+/* Info cards */
+.info-card {
+    margin-bottom: 16px;
+}
+
+.info-card h3 {
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--primary);
+}
+
+.info-card p {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 4px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-mid);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 900px) {
+    .book-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .book-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .slots-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+
+    .book-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Payment option badge */
+.pay-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.pay-badge.online {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.pay-badge.clinic {
+    background: var(--light-grey);
+    color: var(--text-mid);
+}
+
+/* Payment option row — make room for badge */
+.payment-option {
+    align-items: center;
+}
+
+/* Payment methods list */
+.payment-methods-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.payment-methods-list span {
+    background: var(--light-grey);
+    color: var(--text-mid);
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+}
