@@ -3,8 +3,8 @@
 -- Dr. Manjiri Salkar | Nashik, Maharashtra
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS smile_dental_clinic;
-USE smile_dental_clinic;
+-- Note: Database creation and selection removed for compatibility with hosted environments.
+-- Tables will be created in the database specified in your connection string.
 
 -- ============================================================
 -- TABLE 1: users
@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS appointments (
   treatment_type VARCHAR(100) NOT NULL,
   payment_option ENUM('pay_now', 'pay_later') NOT NULL DEFAULT 'pay_later',
   status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+  is_hidden TINYINT(1) NOT NULL DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY unique_slot (date, time),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -86,6 +87,9 @@ CREATE TABLE IF NOT EXISTS payments (
   amount DECIMAL(10,2) NOT NULL DEFAULT 400.00,
   payment_mode ENUM('online', 'clinic') NOT NULL,
   status ENUM('pending', 'completed') DEFAULT 'pending',
+  is_archived TINYINT(1) NOT NULL DEFAULT 0,
+  razorpay_order_id VARCHAR(100) DEFAULT NULL,
+  razorpay_payment_id VARCHAR(100) DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (appointment_id) REFERENCES appointments(id) ON DELETE CASCADE,
@@ -105,6 +109,8 @@ CREATE TABLE IF NOT EXISTS reminders (
   message TEXT NOT NULL,
   reminder_date DATE NOT NULL,
   status ENUM('pending', 'completed') DEFAULT 'pending',
+  is_read TINYINT(1) NOT NULL DEFAULT 0,
+  is_deleted TINYINT(1) NOT NULL DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (appointment_id) REFERENCES appointments(id) ON DELETE CASCADE,
@@ -144,10 +150,7 @@ CREATE TABLE IF NOT EXISTS analytics (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Add Razorpay tracking columns to payments (run once)
-ALTER TABLE payments
-  ADD COLUMN IF NOT EXISTS razorpay_order_id VARCHAR(100) DEFAULT NULL,
-  ADD COLUMN IF NOT EXISTS razorpay_payment_id VARCHAR(100) DEFAULT NULL;
+-- Initialize analytics if empty
 INSERT INTO analytics (total_patients, total_appointments, total_revenue)
 SELECT 0, 0, 0.00
 WHERE NOT EXISTS (SELECT 1 FROM analytics LIMIT 1);

@@ -3,12 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const db = require('./config/db');
+const initializeDatabase = require('./config/initDb');
 const { startReminderScheduler, sendTomorrowReminders } = require('./services/reminderScheduler');
 
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    origin: ["*"],
     credentials: true
 }));
 app.use(express.json());
@@ -128,7 +129,12 @@ const seedAdmins = async () => {
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, async () => {
     console.log(`Server running on port ${PORT}`);
-    await runMigrations();
-    await seedAdmins();
-    startReminderScheduler();
+    try {
+        await initializeDatabase();
+        await runMigrations();
+        await seedAdmins();
+        startReminderScheduler();
+    } catch (err) {
+        console.error('Startup sequence FAILED:', err.message);
+    }
 });
